@@ -31,7 +31,20 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
+// added for BL
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import FindAndReplace from '@ckeditor/ckeditor5-find-and-replace/src/findandreplace';
+import SelectAll from '@ckeditor/ckeditor5-select-all/src/selectall';
+import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Strikethrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+// end of added
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -62,7 +75,20 @@ ClassicEditor.builtinPlugins = [
 	TableToolbar,
 	TextTransformation,
 
+	// added for BL
 	SourceEditing,
+	Font,
+	FindAndReplace,
+	SelectAll,
+	Clipboard,
+	PasteFromOffice,
+	Underline,
+	Strikethrough,
+	Alignment,
+	RemoveFormat,
+	SpecialCharacters,
+	SpecialCharactersEssentials,
+	HorizontalLine,
 ];
 
 // Editor configuration.
@@ -86,7 +112,9 @@ ClassicEditor.defaultConfig = {
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'|',
+			'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor',
 		]
 	},
 	image: {
@@ -107,5 +135,5 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'fr'
 };
