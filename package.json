@@ -43,6 +43,7 @@
     "@ckeditor/ckeditor5-media-embed": "^32.0.0",
     "@ckeditor/ckeditor5-paragraph": "^32.0.0",
     "@ckeditor/ckeditor5-paste-from-office": "^32.0.0",
+    "@ckeditor/ckeditor5-source-editing": "^32.0.0",
     "@ckeditor/ckeditor5-table": "^32.0.0",
     "@ckeditor/ckeditor5-typing": "^32.0.0"
   },
