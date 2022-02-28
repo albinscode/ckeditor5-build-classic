@@ -44,6 +44,8 @@ import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
 import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
 import SpecialCharactersEssentials from '@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials';
 import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import Anchor from './anchor-plugin'
+import Box from './box-plugin'
 // end of added
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -89,12 +91,16 @@ ClassicEditor.builtinPlugins = [
 	SpecialCharacters,
 	SpecialCharactersEssentials,
 	HorizontalLine,
+	Anchor,
+	Box,
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'box',
+			'anchor',
 			'sourceEditing',
 			'heading',
 			'|',
