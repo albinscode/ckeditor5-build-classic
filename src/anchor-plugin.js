@@ -1,7 +1,5 @@
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview.js';
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin.js';
-// import { downcastAttributeToElement } from '@ckeditor/ckeditor5-engine/src/conversion/downcast-converters';
-// import { UpcastDispatcher } from '@ckeditor/ckeditor5-engine/src/conversion/upcastdispatcher';
 
 /**
  * Inspiré de https://ckeditor.com/docs/ckeditor5/latest/framework/guides/plugins/creating-simple-plugin.html
@@ -71,30 +69,6 @@ export default class AnchorPlugin extends Plugin {
 
 				} );
 			} );
-			 // this.editor.conversion.for( 'downcast' ).add( dispatcher => {
-				// dispatcher.on( 'element:imageBlock', ( evt, data, conversionApi ) => {
-
-				// const viewWriter = conversionApi.writer;
-
-				// // if (viewWriter.hasAttribute('anchor')) {
-					// console.log('on a un attribut anchor')
-					// viewWriter.setAttribute( 'id', 'test albin', conversionApi.mapper.toViewElement(data.item ) )
-
-				// // }
-				// console.log(data.item)
-				// // viewWriter.setAttribute( 'id', 'my_unique_id', conversionApi.mapper.toViewElement(data.item ) )
-
-				// } );
-			// } );
-
-			 // this.editor.conversion.for( 'upcast' ).attributeToAttribute( {
-				// view: {
-					// name: 'imageBlock',
-					// key: 'id'
-				// },
-				// model: 'anchor',
-				// converterPriority: 'low'
-			// } );
 
              return view;
          });
