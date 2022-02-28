@@ -18,57 +18,58 @@ export default class AnchorPlugin extends Plugin {
                  tooltip: true
              });
 
-			 // on donne une liste arbitraire d'éléments sur lesquels mettre un ancre
-			 const elements = [
-				 'heading1',
-				 'heading2',
-				 'heading3',
-				 // 'blockquote',
-				 'paragraph',
-				 'imageBlock',
-			 ]
-			 elements.forEach( e => {
-				 this.editor.model.schema.extend(e, {
-					 allowAttributes: 'id'
-				 })
+			 this.editor.model.schema.register( 'anchor', {
+				allowWhere: '$block',
+				allowContentOf: '$root',
+				isObject: true
+			 } );
+			 this.editor.conversion.elementToElement( {
+				model: 'anchor',
+				view: {
+					name: 'a',
+					classes: 'anchor',
+					// attributes: {id: '', href: ''},
+				}
+			 })
+			 // partie détaillée inspirée de https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_conversion_conversion-Conversion.html#function-attributeToAttribute
+			 this.editor.conversion.attributeToAttribute( {
+				 model: {
+					 name: 'anchor',
+					 key: 'id',
+				 },
+				 view: {
+					 name: 'a',
+					 key: 'id',
+				 }
 			 })
 
+			 this.editor.conversion.attributeToAttribute( {
+				 model: {
+					 name: 'anchor',
+					 key: 'href',
+				 },
+				 view: {
+					 name: 'a',
+					 key: 'href',
+				 }
+			 })
 
              view.on('execute', () => {
 
 				 // pour ajouter tout simplement un contenu
 				 // cf https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/custom-element-conversion.html
-                 this.editor.model.change(writer => {
+                 this.editor.model.change(viewWriter => {
 
-					console.log('on crée un attribut')
-					// const element = this.editor.model.document.selection.anchor.parent
-					const element = this.editor.model.document.selection.getSelectedElement()
-					const it = this.editor.model.document.selection.getRanges().next()
-					console.log(it)
-					if (!element) {
-						console.log('element sélectionné vide')
-						return
-					}
-					const idValue = prompt('Entrer le nom :')
-					writer.setAttribute('id', idValue, element)
+					 const id = prompt('Choisissez un identifiant')
+                     const viewElement = viewWriter.createElement('anchor', {
+						 id: id,
+						 href:  '#' + id,
+					 })
+					 const viewSelection = this.editor.model.document.selection;
+					viewWriter.wrap( viewSelection.getFirstRange(), viewElement );
                  });
 
              });
-
-			 // déclenché lors de la réprésentation HTML du composant
-			 // détection de tout changement sur l'attribut id
-			 this.editor.conversion.for( 'downcast' ).add( dispatcher => {
-				dispatcher.on( 'attribute:id', ( evt, data, conversionApi ) => {
-
-				const viewWriter = conversionApi.writer;
-
-				console.log(data)
-
-				viewWriter.setAttribute( 'id', data['attributeNewValue'], conversionApi.mapper.toViewElement(data.item ) )
-				console.log('attribute anchor')
-
-				} );
-			} );
 
              return view;
          });
